@@ -18,6 +18,8 @@ builder.Services.AddDbContext<PlaylistContext>(
 
 builder.Services.AddScoped<IPlaylistRepository, PlaylistRepository>();
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,9 +31,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthorization();
+
+app.UseRouting();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
 });
+
+
 
 app.Run();

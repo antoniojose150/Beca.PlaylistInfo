@@ -13,20 +13,29 @@ namespace Beca.PlaylistInfo.API.Controllers
 
     public class PlaylistsController : ControllerBase
     {
+        private readonly ILogger<Playlist> _logger;
         private readonly IPlaylistRepository _playlistRepository;
         private readonly IMapper _mapper;
+        const int maxPlaylistPageSize = 20;
 
-        public PlaylistsController(IPlaylistRepository playlistRepository, IMapper mapper)
+        public PlaylistsController(ILogger<Playlist> logger,IPlaylistRepository playlistRepository, IMapper mapper)
         {
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _playlistRepository = playlistRepository ?? throw new ArgumentNullException(nameof(playlistRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));    
         }
 
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PlaylistWithoutCancionesDto>>> GetPlaylists()
+        public async Task<ActionResult<IEnumerable<PlaylistWithoutCancionesDto>>> GetPlaylists([FromQuery(Name ="filteronname")]string ? nombre
+            , int pageNumber=1, int pageSize=10)
         {
-            var playlistEntities = await _playlistRepository.GetPlaylistsAsync();
+            if (pageSize > maxPlaylistPageSize)
+            {
+                pageSize = maxPlaylistPageSize;
+            }
+
+            var playlistEntities = await _playlistRepository.GetPlaylistsAsync(nombre, pageNumber, pageSize);
             return Ok(_mapper.Map<IEnumerable<PlaylistWithoutCancionesDto>>(playlistEntities));
         }
 

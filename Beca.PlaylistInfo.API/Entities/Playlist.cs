@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Beca.PlaylistInfo.API.Entities
@@ -12,6 +13,7 @@ namespace Beca.PlaylistInfo.API.Entities
 
         [Required]
         [StringLength(50)]
+        [FromQuery(Name = "filteronname")]
         public string Nombre { get; set; }
 
         [StringLength(300)]

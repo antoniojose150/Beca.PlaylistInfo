@@ -10,7 +10,7 @@ namespace Beca.PlaylistInfo.API.Profiles
 
             CreateMap<Entities.Playlist, Models.PlaylistWithoutCancionesDto>();
             CreateMap<Entities.Playlist, Models.PlaylistDto>();
-            CreateMap<Entities.Cancion, Models.CancionDto>();
+            CreateMap<Entities.Cancion, Models.CancionDto >();
         }
 
     }

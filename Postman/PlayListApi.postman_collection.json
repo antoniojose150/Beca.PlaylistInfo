@@ -1,0 +1,306 @@
+{
+	"info": {
+		"_postman_id": "084c64e8-1f3f-4e41-a251-5a0808e38183",
+		"name": "PlayListApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24227435"
+	},
+	"item": [
+		{
+			"name": "Get Playlists",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7157/api/playlist",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7157",
+					"path": [
+						"api",
+						"playlist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Playlists filter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7157/api/playlist?filteronname=linkin park",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7157",
+					"path": [
+						"api",
+						"playlist"
+					],
+					"query": [
+						{
+							"key": "filteronname",
+							"value": "linkin park"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Playlists page",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7157/api/playlist?pageSize=2&pageNumber=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7157",
+					"path": [
+						"api",
+						"playlist"
+					],
+					"query": [
+						{
+							"key": "pageSize",
+							"value": "2"
+						},
+						{
+							"key": "pageNumber",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Playlist",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7157/api/playlist/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7157",
+					"path": [
+						"api",
+						"playlist",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Playlist con cancion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7157/api/playlist/2?incluyecanciones=false",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7157",
+					"path": [
+						"api",
+						"playlist",
+						"2"
+					],
+					"query": [
+						{
+							"key": "incluyecanciones",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Canciones",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7157/api/playlist/4/cancion",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7157",
+					"path": [
+						"api",
+						"playlist",
+						"4",
+						"cancion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cancion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7157/api/playlist/2/cancion/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7157",
+					"path": [
+						"api",
+						"playlist",
+						"2",
+						"cancion",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Cancion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Post prueba\",\r\n    \"descripcion\":\"a funcionado\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7157/api/playlist/2/cancion",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7157",
+					"path": [
+						"api",
+						"playlist",
+						"2",
+						"cancion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Cancion",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Post prueba\",\r\n    \"descripcion\":\"a funcionado\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7157/api/playlist/2/cancion/3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7157",
+					"path": [
+						"api",
+						"playlist",
+						"2",
+						"cancion",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch Cancion",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n    \"op\": \"replace\",\r\n    \"path\": \"/nombre\",\r\n    \"value\": \"update\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7157/api/playlist/2/cancion/4",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7157",
+					"path": [
+						"api",
+						"playlist",
+						"2",
+						"cancion",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Cancion",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Post prueba\",\r\n    \"descripcion\":\"a funcionado\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7157/api/playlist/2/cancion/4",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7157",
+					"path": [
+						"api",
+						"playlist",
+						"2",
+						"cancion",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

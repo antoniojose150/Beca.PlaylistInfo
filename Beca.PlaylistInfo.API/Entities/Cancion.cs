@@ -11,10 +11,10 @@ namespace Beca.PlaylistInfo.API.Entities
         public int Id { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [MaxLength(50)]
         public string Nombre { get; set; }
 
-        [StringLength(300)]
+        [MaxLength(200)]
         public string? Descripcion { get; set; }
 
         [ForeignKey("PlaylistId")]

@@ -12,11 +12,11 @@ namespace Beca.PlaylistInfo.API.Entities
         public int Id { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [MaxLength(50)]
         [FromQuery(Name = "filteronname")]
         public string Nombre { get; set; }
 
-        [StringLength(300)]
+        [MaxLength(200)]
         public string ? Descripcion { get; set; }
 
         public ICollection<Cancion> Canciones { get; set; } = new List<Cancion>();

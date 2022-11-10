@@ -5,6 +5,7 @@ using Beca.PlaylistInfo.API.Models;
 using Beca.PlaylistInfo.API.Profiles;
 using Beca.PlaylistInfo.API.Services;
 using Castle.Core.Logging;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -46,7 +47,7 @@ namespace PlaylistInfo.Test
             playlistMock
                 .Setup(m => m.GetCancionAsync(It.IsAny<int>(), It.IsAny<int>()))
                 .ReturnsAsync(
-                    new Cancion("in the end"){Descripcion="best music"}
+                    new Cancion("in the end"){Descripcion="best music",PlaylistId=2,Playlist = new Playlist("skillet") { Id = 2, Descripcion = "buena play" } }
                  );
             playlistMock
                 .Setup(m => m.AddCancionAsync(It.IsAny<int>(), It.IsAny<Cancion>()));
@@ -55,6 +56,9 @@ namespace PlaylistInfo.Test
                 .ReturnsAsync(
                     true
                  );
+            playlistMock
+                .Setup(m => m.DeleteCancion(It.IsAny<Cancion>()));
+                
 
 
             var mapperConfi = new MapperConfiguration(
@@ -121,5 +125,60 @@ namespace PlaylistInfo.Test
 
         }
 
+        [Fact]
+        public async Task UpgradeCancion_Test()
+        {
+            //Arrage
+
+            //Act
+            CancionUpdateDto cancion = new CancionUpdateDto()
+            {
+                Nombre = "ok",
+                Descripcion = "prueba"
+            };
+
+            var result = await _playlistController.UpgrateCancion(2,2, cancion);
+
+            //Assert
+            var actionResult = Assert.IsType<NoContentResult>(result);
+            
+
+        }
+
+        /*[Fact]
+        public async Task PartialUpgradeCancion_Test()
+        {
+            //Arrage
+
+            JsonPatchDocument<CancionUpdateDto> cancion = new JsonPatchDocument<CancionUpdateDto>();
+            cancion.Replace(e => e.Nombre, "nuebo");
+            cancion.Replace(e => e.Descripcion, null);
+
+
+            //Act
+
+            var result = await _playlistController.PartiallyUpgrateCancion(2, 2, cancion);
+
+            //Assert
+            var actionResult = Assert.IsType<NoContentResult>(result);
+
+
+        }*/
+
+
+        [Fact]
+        public async Task DeleteCancion_Test()
+        {
+            //Arrage
+
+            //Act
+
+            var result = await _playlistController.DeleteCancion(2, 2);
+
+            //Assert
+            var actionResult = Assert.IsType<NoContentResult>(result);
+
+
+        }
     }
 }
